@@ -1,0 +1,35 @@
+name: agentscan
+description: Find leaked keys, risky permissions and hidden instructions in AI agent configs
+author: VIEH Security Team
+branding:
+  icon: shield
+  color: red
+
+inputs:
+  path:
+    description: Directory to scan
+    default: "."
+  fail-on:
+    description: Fail the job at this severity or above (high, medium, low, never)
+    default: high
+  sarif:
+    description: Optional path to also write a SARIF report (for GitHub code scanning)
+    default: ""
+
+runs:
+  using: composite
+  steps:
+    - name: Scan agent configs
+      shell: bash
+      env:
+        AS_PATH: ${{ inputs.path }}
+        AS_FAIL_ON: ${{ inputs.fail-on }}
+        AS_SARIF: ${{ inputs.sarif }}
+        PYTHONPATH: ${{ github.action_path }}
+      run: |
+        # No dependencies, so no install step: run straight from the action checkout.
+        python3 -m agentscan "$AS_PATH" --format github --fail-on never
+        if [ -n "$AS_SARIF" ]; then
+          python3 -m agentscan "$AS_PATH" --format sarif -o "$AS_SARIF" --fail-on never
+        fi
+        python3 -m agentscan "$AS_PATH" --no-color --fail-on "$AS_FAIL_ON"

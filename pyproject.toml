@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agentscan"
+version = "0.1.0"
+description = "Find leaked keys, risky permissions and hidden instructions in AI agent configs"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "VIEH Security Team" }]
+requires-python = ">=3.9"
+dependencies = []
+keywords = ["security", "mcp", "claude-code", "cursor", "copilot", "secrets", "ai-agents", "sarif"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Security",
+    "Environment :: Console",
+]
+
+[project.scripts]
+agentscan = "agentscan.cli:main"
+
+[tool.setuptools]
+packages = ["agentscan"]
