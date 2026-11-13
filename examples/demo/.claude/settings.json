@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm test:*)",
+      "Bash(curl:*)",
+      "Bash"
+    ],
+    "defaultMode": "bypassPermissions"
+  },
+  "enableAllProjectMcpServers": true
+}
