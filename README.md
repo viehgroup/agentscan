@@ -155,8 +155,11 @@ python -m unittest discover -s tests -v
 
 ## Related
 
+From the same team:
 [slopwatch](https://github.com/viehgroup/slopwatch) blocks hallucinated and typosquatted
-packages before `pip` or `npm` installs them, including from inside an AI agent.
+packages before `pip` or `npm` installs them, including from inside an AI agent, and
+[extwatch](https://github.com/viehgroup/extwatch) catches backdoored VS Code, Cursor and
+Windsurf extensions.
 
 ## License
 
